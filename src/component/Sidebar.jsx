@@ -14,32 +14,32 @@ const Sidebar = () => {
           />
         </div>
         <div className="flex flex-col">
-          <h3 className="text-sm font-bold text-[#0b2240] leading-tight">Alex Rivera</h3>
-          <p className="text-[11px] text-slate-500 mt-0.5">Student Services</p>
+          <h3 className="text-sm font-bold text-[#0b2240] leading-tight whitespace-nowrap">Alex Rivera</h3>
+          <p className="text-[11px] text-slate-500 mt-0.5 whitespace-nowrap">Student Services</p>
         </div>
       </div>
 
       {/* Navigation Links */}
       <nav className="flex flex-col justify-between flex-1">
         <div className="flex flex-col gap-1">
-          <a href="#home" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold bg-[#1e3a5f] text-white transition-all">
-            <Home size={20} />
+          <a href="#home" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold bg-[#1e3a5f] text-white transition-all whitespace-nowrap">
+            <Home size={20} className="shrink-0" />
             <span>Home</span>
           </a>
-          <a href="#find-room" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-slate-100 hover:text-[#0b2240] transition-all">
-            <Calendar size={20} className="text-slate-400" />
+          <a href="#find-room" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-slate-100 hover:text-[#0b2240] transition-all whitespace-nowrap">
+            <Calendar size={20} className="text-slate-400 shrink-0" />
             <span>Find Room</span>
           </a>
-          <a href="#my-requests" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-slate-100 hover:text-[#0b2240] transition-all">
-            <ClipboardList size={20} />
+          <a href="#my-requests" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold border border-dashed border-blue-500 bg-blue-50 text-blue-800 transition-all whitespace-nowrap">
+            <ClipboardList size={20} className="shrink-0" />
             <span>My Requests</span>
           </a>
-          <a href="#map" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-slate-100 hover:text-[#0b2240] transition-all">
-            <Map size={20} className="text-slate-400" />
+          <a href="#map" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-slate-100 hover:text-[#0b2240] transition-all whitespace-nowrap">
+            <Map size={20} className="text-slate-400 shrink-0" />
             <span>Campus Map</span>
           </a>
-          <a href="#settings" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-slate-100 hover:text-[#0b2240] transition-all">
-            <Settings size={20} className="text-slate-400" />
+          <a href="#settings" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-slate-100 hover:text-[#0b2240] transition-all whitespace-nowrap">
+            <Settings size={20} className="text-slate-400 shrink-0" />
             <span>Settings</span>
           </a>
         </div>
@@ -47,12 +47,12 @@ const Sidebar = () => {
         <div className="mt-auto">
           <div className="h-px bg-slate-200 my-4 mx-2"></div>
           <div className="flex flex-col gap-1">
-            <a href="#help" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-slate-100 hover:text-[#0b2240] transition-all">
-              <HelpCircle size={20} className="text-slate-400" />
+            <a href="#help" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-slate-100 hover:text-[#0b2240] transition-all whitespace-nowrap">
+              <HelpCircle size={20} className="text-slate-400 shrink-0" />
               <span>Help</span>
             </a>
-            <a href="#logout" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-slate-100 hover:text-[#0b2240] transition-all">
-              <LogOut size={20} className="text-slate-400" />
+            <a href="#logout" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-slate-100 hover:text-[#0b2240] transition-all whitespace-nowrap">
+              <LogOut size={20} className="text-slate-400 shrink-0" />
               <span>Logout</span>
             </a>
           </div>

@@ -1,16 +1,15 @@
-import React from 'react';
 import { Search, Bell, User } from 'lucide-react';
 
 const Navbar = () => {
   return (
     <header className="flex items-center justify-between h-[70px] px-8 bg-white border-b border-gray-200 w-full select-none">
       <div className="flex items-center gap-10">
-        <h1 className="text-2xl font-extrabold text-[#0b2240] tracking-tight">CampusReserve</h1>
+        <h1 className="text-2xl font-extrabold text-[#0b2240] tracking-tight whitespace-nowrap">CampusReserve</h1>
         <nav className="flex items-center gap-6">
-          <a href="#dashboard" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all">Dashboard</a>
-          <a href="#bookings" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all">My Bookings</a>
-          <a href="#buildings" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all">Buildings</a>
-          <a href="#schedule" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all">Schedule</a>
+          <a href="#dashboard" className="text-sm font-semibold text-blue-800 border border-dashed border-blue-500 bg-blue-50 px-3 py-2 rounded-md transition-all whitespace-nowrap">Dashboard</a>
+          <a href="#bookings" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all whitespace-nowrap">My Bookings</a>
+          <a href="#buildings" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all whitespace-nowrap">Buildings</a>
+          <a href="#schedule" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all whitespace-nowrap">Schedule</a>
         </nav>
       </div>
 
