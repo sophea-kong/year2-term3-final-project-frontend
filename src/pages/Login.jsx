@@ -1,4 +1,3 @@
-import React from 'react';
 import LoginCard from '../component/login-card';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
