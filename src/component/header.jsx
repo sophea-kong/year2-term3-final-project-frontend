@@ -12,7 +12,7 @@ export default function Header() {
     const [ openDropdown, setOpenDropdown ] = useState(false);
 
     return (
-        <header className="border-b border-(--secondary-color) bg-white">
+        <header className="border-b border-(--secondary-color) bg-white sticky top-0 z-50">
             <div className="mx-auto flex h-20 items-center justify-between px-6">
                 {/* Left Side */}
                 <div className="flex items-center gap-5">
