@@ -1,15 +1,22 @@
+import { Link, NavLink } from 'react-router-dom';
 import { Search, Bell, User } from 'lucide-react';
 
-const Navbar = () => {
+const Navbar = ({ onProfileClick }) => {
+  const getLinkClass = ({ isActive }) =>
+    `text-sm font-semibold px-3 py-2 rounded-md transition-all whitespace-nowrap ${
+      isActive 
+        ? 'text-blue-800 border border-dashed border-blue-500 bg-blue-50' 
+        : 'text-gray-600 hover:text-[#0b2240] hover:bg-gray-100'
+    }`;
+
   return (
     <header className="flex items-center justify-between h-[70px] px-8 bg-white border-b border-gray-200 w-full select-none">
       <div className="flex items-center gap-10">
-        <h1 className="text-2xl font-extrabold text-[#0b2240] tracking-tight whitespace-nowrap">CampusReserve</h1>
+        <Link to="/" className="text-2xl font-extrabold text-[#0b2240] tracking-tight whitespace-nowrap">CampusReserve</Link>
         <nav className="flex items-center gap-6">
-          <a href="#dashboard" className="text-sm font-semibold text-blue-800 border border-dashed border-blue-500 bg-blue-50 px-3 py-2 rounded-md transition-all whitespace-nowrap">Dashboard</a>
-          <a href="#bookings" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all whitespace-nowrap">My Bookings</a>
-          <a href="#buildings" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all whitespace-nowrap">Buildings</a>
-          <a href="#schedule" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all whitespace-nowrap">Schedule</a>
+          <NavLink to="/bookings" className={getLinkClass}>My Bookings</NavLink>
+          <NavLink to="/rooms" className={getLinkClass}>Rooms</NavLink>
+          <NavLink to="/schedule" className={getLinkClass}>Schedule</NavLink>
         </nav>
       </div>
 
@@ -28,7 +35,11 @@ const Navbar = () => {
           <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full border border-white"></span>
         </button>
 
-        <button className="flex items-center justify-center w-[34px] h-[34px] border border-gray-600 hover:border-[#0b2240] hover:bg-gray-100 rounded-full text-gray-600 hover:text-[#0b2240] transition-all" aria-label="User Profile">
+        <button 
+          onClick={onProfileClick} 
+          className="flex items-center justify-center w-[34px] h-[34px] border border-gray-600 hover:border-[#0b2240] hover:bg-gray-100 rounded-full text-gray-600 hover:text-[#0b2240] transition-all" 
+          aria-label="User Profile"
+        >
           <User size={20} />
         </button>
       </div>
@@ -37,3 +48,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
