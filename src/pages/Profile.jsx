@@ -18,8 +18,9 @@ export default function Profile() {
             console.log(err);
         }
     }
-    fetchProfile(Profile);
-  })
+    fetchProfile();
+  }, [])
+
 
 
   const handleLogout = () => {

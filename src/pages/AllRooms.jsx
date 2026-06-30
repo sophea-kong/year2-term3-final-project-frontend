@@ -19,7 +19,8 @@ export default function AllRooms() {
         }
     }
     fetchRooms();
-  })
+  }, [])
+
 
   return (
     <main className="flex-1 p-8 overflow-y-auto bg-slate-50">
