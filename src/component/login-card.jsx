@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import authApi from '../api/authApi';
+import { University } from 'lucide-react';
 
 const LoginCard = () => {
   const [email, setEmail] = useState('');
@@ -46,8 +47,11 @@ const LoginCard = () => {
 
   return (
     <div className="login-card w-full max-w-md bg-white border border-gray-200 rounded-2xl p-8 shadow-xl mx-auto my-12 transition-all">
+      <div className='flex items-center justify-center'>
+        <University className='bg-[#006c4a] text-white m-4 p-3 w-20 h-20 rounded-full' />
+      </div>
       <h2 className="text-2xl font-extrabold text-[#0b2240] text-center mb-6">
-        {isRegistering ? 'Create Account' : 'Welcome Back'}
+        {isRegistering ? 'Create Account' : 'Sign in to Your Account'}
       </h2>
       
       {authError && (

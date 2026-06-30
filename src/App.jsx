@@ -1,35 +1,31 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import Header from "./component/header";
-import Navbar from "./component/Navbar";
-import DashBoard from "./pages/DashBoard";
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './component/Layout';
+import Bookings from './pages/Bookings';
+import AllRooms from './pages/AllRooms';
+import Login from './pages/Login';
+import Profile from './pages/Profile';
 
-// test page
-function Bookings() {
-  return <h1>My Bookings</h1>;
-}
-
-function Buildings() {
-  return <h1>Buildings</h1>;
-}
-
-function Schedule() {
-  return <h1>Schedule</h1>;
-}
-
-export default function App() {
+function App() {
   return (
-    <>
-      <Header />
-      {/* <Navbar /> */}
-
-
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/dashboard" element={<DashBoard />} />
-        <Route path="/bookings" element={<Bookings />} />
-        <Route path="/buildings" element={<Buildings />} />
-        <Route path="/schedule" element={<Schedule />} />
+        {/* Public Route */}
+        <Route path="/login" element={<Login />} />
+        
+        {/* Protected Routes */}
+        <Route element={<Layout />}>
+          <Route path="/" element={<Navigate to="/bookings" replace />} />
+          <Route path="/bookings" element={<Bookings />} />
+          <Route path="/rooms" element={<AllRooms />} />
+          <Route path="/profile" element={<Profile />} />
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/bookings" replace />} />
+        </Route>
       </Routes>
-    </>
+    </BrowserRouter>
   );
 }
+
+export default App;
+
