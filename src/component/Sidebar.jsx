@@ -19,7 +19,7 @@ const Sidebar = () => {
     }`;
 
   return (
-    <aside className="w-[260px] h-[calc(100vh-70px)] bg-slate-50 border-r border-gray-200 p-6 flex flex-col justify-between select-none shrink-0">
+    <aside className="w-[260px] h-[calc(100vh-5rem)] bg-slate-50 border-r border-gray-200 p-6 flex flex-col justify-between select-none shrink-0 sticky top-20 overflow-y-auto self-start">
       {/* User Profile Card */}
       <NavLink to="/profile" className="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 mb-8 hover:shadow-sm transition-all cursor-pointer">
         <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-slate-200 flex-shrink-0">
