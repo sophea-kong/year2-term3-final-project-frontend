@@ -74,7 +74,16 @@ export default function Header() {
                         <Bell size={20} />
                     </button>
 
-                    <Link to="/profile" className="cursor-pointer rounded-full bg-(--primary-color) p-2 text-white">
+                    <Link 
+                        to="/profile" 
+                        onClick={(e) => {
+                            if (window.innerWidth < 768) {
+                                e.preventDefault();
+                                window.dispatchEvent(new CustomEvent('toggle-sidebar'));
+                            }
+                        }}
+                        className="cursor-pointer rounded-full bg-(--primary-color) p-2 text-white"
+                    >
                         <CircleUserRound size={22} />
                     </Link>
                 </div>
