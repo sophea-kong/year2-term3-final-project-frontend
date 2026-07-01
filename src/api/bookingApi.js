@@ -81,8 +81,8 @@ const bookingApi = {
     }
   },
   cancelBooking: (id) => {
-    // If your backend has DELETE /booking/:id
-    return axiosClient.delete(`/booking/${id}`).catch(() => null);
+    // If your backend has PATCH /booking/:id/cancel
+    return axiosClient.patch(`/booking/${id}/cancel`).catch(() => null);
   },
   getTicketByBookingId: (bookingId) => {
     return axiosClient.get(`/booking/${bookingId}/ticket`);

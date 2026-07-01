@@ -2,6 +2,12 @@ function MyRequestCard({ room, building, status, date, time, eventTitle, onViewD
     return (
         <div className="w-full max-w-md rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
             {/* Header */}
+            {/* {userId && (
+                <p className="text-sm text-slate-500">
+                    User ID: {userId}
+                </p>
+            )} */}
+
             <div className="flex items-start justify-between gap-3">
                 <h3 className="text-lg font-bold text-(--primary-color)">
                     {room} - {building}
