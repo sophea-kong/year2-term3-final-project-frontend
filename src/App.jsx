@@ -5,25 +5,28 @@ import Bookings from './pages/Bookings';
 import AllRooms from './pages/AllRooms';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+import MyRequest from './pages/MyRequest';
+import Header from './component/header';
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
+      <Header />
       <Routes>
         {/* Public Route */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/Dashboard/Myrequest" element={<MyRequest />} />
         
         {/* Protected Routes */}
-        <Route element={<Layout />}>
+        {/* <Route element={<Layout />}>
           <Route path="/" element={<Navigate to="/bookings" replace />} />
           <Route path="/bookings" element={<Bookings />} />
           <Route path="/rooms" element={<AllRooms />} />
           <Route path="/profile" element={<Profile />} />
-          {/* Fallback */}
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<Navigate to="/bookings" replace />} />
-        </Route>
+        </Route> */}
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
