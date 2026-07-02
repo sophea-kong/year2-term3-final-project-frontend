@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './component/Layout';
-import Bookings from './pages/Bookings';
 import AllRooms from './pages/AllRooms';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
@@ -18,12 +17,11 @@ function App() {
         
         {/* Protected Routes */}
         <Route element={<Layout />}>
-          <Route path="/" element={<Navigate to="/bookings" replace />} />
-          <Route path="/bookings" element={<Bookings />} />
+          <Route path="/" element={<Navigate to="/myrequests" replace />} />
           <Route path="/rooms" element={<AllRooms />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/myrequests" element={<MyRequest />} />
-          <Route path="*" element={<Navigate to="/bookings" replace />} />
+          <Route path="*" element={<Navigate to="/myrequests" replace />} />
         </Route>
       </Routes>
     </>

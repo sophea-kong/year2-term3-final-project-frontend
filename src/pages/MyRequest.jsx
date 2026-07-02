@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import Sidebar from "../component/Sidebar";
 import RequestCard from "../component/MyRequestCard";
 import bookingApi from "../api/bookingApi";
 
 export default function DashBoard() {
-    const timeItems = ["Today", "Week", "Month"];
+    const timeItems = ["Today", "Week", "Month", "All"];
     const [selectedTime, setSelectedTime] = useState("Today");
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -68,10 +67,7 @@ export default function DashBoard() {
     });
 
     return (
-        <section className="flex min-h-screen w-full bg-slate-50">
-            <Sidebar />
-
-            <main className="flex-1 px-6 py-4 md:py-6 lg:py-8">
+        <main className="flex-1 px-6 py-4 md:py-6 lg:py-8 bg-slate-50 overflow-y-auto">
                 <div className="relative mb-4">
                     <h1 className="text-3xl font-extrabold tracking-tight text-(--primary-color)">
                         Room Availability Dashboard
@@ -151,7 +147,6 @@ export default function DashBoard() {
                         })}
                     </div>
                 )}
-            </main>
-        </section>
+        </main>
     );
 }

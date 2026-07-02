@@ -3,8 +3,7 @@ import { Bell, CircleUserRound, Menu } from "lucide-react";
 import { NavLink, Link } from "react-router-dom";
 export default function Header() {
     const navItems = [
-        { name: "Dashboard", href: "/dashboard" },
-        { name: "My Bookings", href: "/bookings" },
+        { name: "My Requests", href: "/myrequests" },
         { name: "Buildings", href: "/buildings" },
         { name: "Schedule", href: "/schedule" },
     ];

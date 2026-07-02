@@ -81,17 +81,13 @@ const Sidebar = ({ isOpen: controlledIsOpen, onClose: controlledOnClose }) => {
         {/* Navigation Links */}
         <nav className="flex flex-col justify-between flex-1">
           <div className="flex flex-col gap-1">
-            <NavLink to="/bookings" onClick={handleLinkClick} className={getLinkClass}>
+            <NavLink to="/myrequests" onClick={handleLinkClick} className={getLinkClass}>
               <Home size={20} className="shrink-0" />
-              <span>Home</span>
+              <span>My Requests</span>
             </NavLink>
             <NavLink to="/rooms" onClick={handleLinkClick} className={getLinkClass}>
               <Calendar size={20} className="shrink-0" />
               <span>Find Room</span>
-            </NavLink>
-            <NavLink to="/requests" onClick={handleLinkClick} className={getLinkClass}>
-              <ClipboardList size={20} className="shrink-0" />
-              <span>My Requests</span>
             </NavLink>
             <NavLink to="/map" onClick={handleLinkClick} className={getLinkClass}>
               <Map size={20} className="shrink-0" />
