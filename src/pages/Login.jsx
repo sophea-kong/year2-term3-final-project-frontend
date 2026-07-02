@@ -14,13 +14,13 @@ function Login_navbar(){
                 </h1>
 
                 {/* Desktop Navigation Links */}
-                <nav className="hidden md:flex items-center gap-6">
+                {/* <nav className="hidden md:flex items-center gap-6">
                     <a href="#dashboard" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all">Dashboard</a>
                     <a href="#bookings" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all whitespace-nowrap">My Bookings</a>
                     <a href="#buildings" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all">Buildings</a>
                     <a href="#schedule" className="text-sm font-semibold text-gray-600 hover:text-[#0b2240] hover:bg-gray-100 px-3 py-2 rounded-md transition-all">Schedule</a>
                     <a href="#schedule" className="flex items-center justify-center text-sm font-semibold text-white bg-[#059669] hover:bg-[#006948] px-6 py-2 rounded-md transition-all whitespace-nowrap">Log in</a>
-                </nav>
+                </nav> */}
 
                 {/* Mobile Menu Button */}
                 <button 
@@ -49,7 +49,6 @@ function Login_navbar(){
 function Login(){
     return (
         <div className="min-h-screen flex flex-col bg-slate-50">
-            <Login_navbar />
             <div className="flex-1 flex items-center justify-center px-4">
                 <LoginCard />
             </div>

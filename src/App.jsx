@@ -14,17 +14,17 @@ function App() {
       <Header />
       <Routes>
         {/* Public Route */}
-        <Route path="/Dashboard/Myrequest" element={<MyRequest />} />
+        <Route path="/login" element={<Login />} />
         
         {/* Protected Routes */}
-        {/* <Route element={<Layout />}>
+        <Route element={<Layout />}>
           <Route path="/" element={<Navigate to="/bookings" replace />} />
           <Route path="/bookings" element={<Bookings />} />
           <Route path="/rooms" element={<AllRooms />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/myrequests" element={<MyRequest />} />
           <Route path="*" element={<Navigate to="/bookings" replace />} />
-        </Route> */}
+        </Route>
       </Routes>
     </>
   );

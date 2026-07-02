@@ -48,9 +48,6 @@ export default function DashBoard() {
 
     // Filter bookings based on selectedTime
     const filteredBookings = bookings.filter((booking) => {
-        const isPending = typeof booking.status === "string" && booking.status.toLowerCase() === "pending";
-        if (!isPending || !booking.startTime) return false;
-        
         const bookingDate = new Date(booking.startTime);
         const now = new Date();
         
