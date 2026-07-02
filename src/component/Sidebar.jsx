@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Home, Calendar, ClipboardList, Map, Settings, HelpCircle, LogOut } from 'lucide-react';
+import authApi from '../api/authApi';
 
 const Sidebar = ({ isOpen: controlledIsOpen, onClose: controlledOnClose }) => {
   const navigate = useNavigate();
@@ -8,6 +9,22 @@ const Sidebar = ({ isOpen: controlledIsOpen, onClose: controlledOnClose }) => {
 
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : uncontrolledIsOpen;
   const onClose = controlledOnClose !== undefined ? controlledOnClose : () => setUncontrolledIsOpen(false);
+  const [user,setUser] = useState({
+  fullName: 'Alex Rivera',
+  email: 'alex.rivera@university.edu',
+  role: 'Student / Resource Coordinator',
+  });
+  useEffect(()=>{
+    const fetchProfile = async ()=>{
+        try{
+            const u = await authApi.me();
+            setUser(u);
+        } catch (err){
+            console.log(err);
+        }
+    }
+    fetchProfile();
+  }, [])
 
   useEffect(() => {
     if (controlledIsOpen !== undefined) return;
@@ -56,7 +73,7 @@ const Sidebar = ({ isOpen: controlledIsOpen, onClose: controlledOnClose }) => {
         className={`w-[260px] bg-slate-50 border-r border-gray-200 p-6 flex flex-col justify-between select-none shrink-0 overflow-y-auto
           fixed top-0 bottom-0 left-0 z-50 h-full shadow-2xl transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0 pointer-events-auto' : '-translate-x-full pointer-events-none md:pointer-events-auto'}
-          md:static md:translate-x-0 md:h-[calc(100vh-70px)] md:sticky md:top-[70px] md:shadow-none md:z-auto md:self-start md:flex
+          md:static md:translate-x-0 md:h-[calc(100vh-5rem)] md:sticky md:top-20 md:shadow-none md:z-auto md:flex
         `}
       >
         {/* User Profile Card */}
@@ -67,14 +84,14 @@ const Sidebar = ({ isOpen: controlledIsOpen, onClose: controlledOnClose }) => {
         >
           <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-slate-200 flex-shrink-0">
             <img 
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100&h=100" 
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/960px-Windows_10_Default_Profile_Picture.svg.png" 
               alt="Alex Rivera Profile" 
               className="w-full h-full object-cover"
             />
           </div>
           <div className="flex flex-col">
-            <h3 className="text-sm font-bold text-[#0b2240] leading-tight whitespace-nowrap">Alex Rivera</h3>
-            <p className="text-[11px] text-slate-500 mt-0.5 whitespace-nowrap">Student Services</p>
+            <h3 className="text-sm font-bold text-[#0b2240] leading-tight whitespace-nowrap">{user.fullName}</h3>
+            <p className="text-[11px] text-slate-500 mt-0.5 whitespace-nowrap">{user.role}</p>
           </div>
         </NavLink>
 
