@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Search, MapPin, Users, Calendar, ShieldCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import roomApi from '../api/roomApi';
 
 export default function AllRooms() {
+  const navigate = useNavigate();
   const [rooms,setRoom] = useState([
-    { id: 1, name: 'Room 302', building: 'Science North', capacity: 30, type: 'Lecture Hall', status: 'Available' },
-    { id: 2, name: 'Innovation Lab A', building: 'Engineering Wing', capacity: 15, type: 'Lab', status: 'Reserved' },
-    { id: 3, name: 'Seminar Room 101', building: 'Arts & Humanities', capacity: 20, type: 'Seminar Room', status: 'Available' },
-    { id: 4, name: 'Conference Room B', building: 'Administration', capacity: 10, type: 'Conference Room', status: 'Available' },
+    { roomId: 1, name: 'Room 302', building: 'Science North', capacity: 30, type: 'Lecture Hall', status: 'Available' },
+    { roomId: 2, name: 'Innovation Lab A', building: 'Engineering Wing', capacity: 15, type: 'Lab', status: 'Reserved' },
+    { roomId: 3, name: 'Seminar Room 101', building: 'Arts & Humanities', capacity: 20, type: 'Seminar Room', status: 'Available' },
+    { roomId: 4, name: 'Conference Room B', building: 'Administration', capacity: 10, type: 'Conference Room', status: 'Available' },
   ]);
   useEffect(()=>{
     const fetchRooms = async ()=>{
         try{
             const res = await roomApi.getAllRooms();
             setRoom(res);
-        } catch (err){
+        } catch (err){  
             console.log(err);
         }
     }
@@ -60,7 +62,10 @@ export default function AllRooms() {
               </div>
             </div>
 
-            <button className="w-full py-2.5 bg-[#006c4a] hover:bg-[#00855d] text-white text-xs font-bold rounded-lg transition-all shadow-sm">
+            <button 
+              onClick={() => navigate(`/booking?roomId=${room.roomId}`)}
+              className="w-full py-2.5 bg-[#006c4a] hover:bg-[#00855d] text-white text-xs font-bold rounded-lg transition-all shadow-sm"
+            >
               Book Room
             </button>
           </div>

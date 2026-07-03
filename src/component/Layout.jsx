@@ -19,7 +19,7 @@ const Layout = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen w-screen overflow-hidden bg-slate-100 font-sans">
+    <div className="flex flex-col h-[calc(100vh-5rem)] w-full overflow-hidden bg-slate-100 font-sans">
       <div className="flex flex-1 overflow-hidden w-full relative bg-slate-100">
         <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         <Outlet />

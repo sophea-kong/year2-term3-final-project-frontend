@@ -84,6 +84,9 @@ const bookingApi = {
     // If your backend has PATCH /booking/:id/cancel
     return axiosClient.patch(`/booking/${id}/cancel`).catch(() => null);
   },
+  createBooking: (bookingData) => {
+    return axiosClient.post('/booking', bookingData);
+  },
   getTicketByBookingId: (bookingId) => {
     return axiosClient.get(`/booking/${bookingId}/ticket`);
   },

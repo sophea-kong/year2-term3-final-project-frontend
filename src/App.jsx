@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import MyRequest from './pages/MyRequest';
 import Header from './component/header';
+import BookingForm from './pages/BookingForm';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/rooms" element={<AllRooms />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/myrequests" element={<MyRequest />} />
+          <Route path="/booking" element={<BookingForm />} />
           <Route path="*" element={<Navigate to="/myrequests" replace />} />
         </Route>
       </Routes>
