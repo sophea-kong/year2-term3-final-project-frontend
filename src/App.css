@@ -15,3 +15,7 @@
   font-weight: 500;
   color: var(--primary-color);
 }
+
+.body{
+  background-color: white;
+}

@@ -14,7 +14,6 @@ export default function DashBoard() {
         setError(null);
         try {
             const data = await bookingApi.getPendingBookings();
-            console.log("Bookings fetched from API:", data);
             if (data) {
                 setBookings(data);
             } else {

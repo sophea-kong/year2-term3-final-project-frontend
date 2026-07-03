@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import authApi from '../api/authApi';
 import { University } from 'lucide-react';
 
 const LoginCard = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
@@ -21,8 +23,8 @@ const LoginCard = () => {
       if (typeof tokenReceived === 'string') {
         localStorage.setItem('token', tokenReceived);
         setAuthSuccess('Logged in successfully!');
-        // Refresh page or trigger app redirect
-        window.location.reload();
+        // Redirect to Schedule page
+        navigate('/schedule');
       } else {
         setAuthError('Invalid response payload from server.');
       }
