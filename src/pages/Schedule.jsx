@@ -23,7 +23,7 @@ export default function Schedule() {
 
     // Timeline boundaries: 8:00 AM (480 mins) to 6:00 PM (1080 mins)
     const startHour = 8;
-    const endHour = 18;
+    const endHour = 24;
     const totalHours = endHour - startHour;
 
     // Helper: convert a date string or Date object into total minutes from midnight
