@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import scheduleApi from "../api/scheduleApi";
 import roomApi from "../api/roomApi";
 import { Calendar, ChevronLeft, ChevronRight, MapPin, Clock, Info } from 'lucide-react';
 
 export default function Schedule() {
+    const navigate = useNavigate();
     const [schedules, setSchedules] = useState([]);
     const [rooms, setRooms] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -62,8 +64,8 @@ export default function Schedule() {
                 ]);
 
                 const fetchedSchedules = Array.isArray(scheduleData) 
-                    ? scheduleData 
-                    : (scheduleData && Array.isArray(scheduleData.data) ? scheduleData.data : []);
+                     ? scheduleData 
+                     : (scheduleData && Array.isArray(scheduleData.data) ? scheduleData.data : []);
                 
                 const fetchedRooms = Array.isArray(roomData) ? roomData : [];
                 
@@ -240,6 +242,12 @@ export default function Schedule() {
                                                 <span>{room.building}</span>
                                             </div>
                                             <span className="text-[10px] text-slate-400 mt-0.5">Cap: {room.capacity} • {room.roomType || 'Standard'}</span>
+                                            <button 
+                                                onClick={() => navigate(`/book?roomId=${room.roomId || room.id}&date=${selectedDate}`)}
+                                                className="w-fit mt-2 px-3 py-1 bg-[#006c4a]/10 hover:bg-[#006c4a] text-[#006c4a] hover:text-white text-[10px] font-bold rounded transition-all cursor-pointer"
+                                            >
+                                                Book Room
+                                            </button>
                                         </div>
 
                                         {/* Row Timeline Grid Track */}

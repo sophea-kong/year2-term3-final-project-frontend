@@ -24,6 +24,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/myrequests" element={<MyRequest />} />
           <Route path="/schedule" element={<Schedule />} />
+          <Route path="/book" element={<BookingForm />} />
           <Route path="*" element={<Navigate to="/myrequests" replace />} />
         </Route>
       </Routes>

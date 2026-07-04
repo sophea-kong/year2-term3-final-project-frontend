@@ -17,10 +17,10 @@ const getRoomFallbackImage = (type) => {
 export default function AllRooms() {
   const navigate = useNavigate();
   const [rooms,setRoom] = useState([
-    { roomId: 1, name: 'Room 302', building: 'Science North', capacity: 30, type: 'Lecture Hall', status: 'Available' },
-    { roomId: 2, name: 'Innovation Lab A', building: 'Engineering Wing', capacity: 15, type: 'Lab', status: 'Reserved' },
-    { roomId: 3, name: 'Seminar Room 101', building: 'Arts & Humanities', capacity: 20, type: 'Seminar Room', status: 'Available' },
-    { roomId: 4, name: 'Conference Room B', building: 'Administration', capacity: 10, type: 'Conference Room', status: 'Available' },
+    { id: 1, name: 'Room 302', building: 'Science North', capacity: 30, type: 'Lecture Hall', status: 'Available' },
+    { id: 2, name: 'Innovation Lab A', building: 'Engineering Wing', capacity: 15, type: 'Lab', status: 'Reserved' },
+    { id: 3, name: 'Seminar Room 101', building: 'Arts & Humanities', capacity: 20, type: 'Seminar Room', status: 'Available' },
+    { id: 4, name: 'Conference Room B', building: 'Administration', capacity: 10, type: 'Conference Room', status: 'Available' },
   ]);
   useEffect(()=>{
     const fetchRooms = async ()=>{
@@ -46,10 +46,10 @@ export default function AllRooms() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {rooms.map((room) => {
-          const roomId = room.roomId;
-          const roomName = room.roomName;
-          const roomType = room.roomType;
-          const imageUrl = room.images?.[0]?.imageUrl;
+          const roomId = room.roomId || room.id;
+          const roomName = room.roomName || room.name;
+          const roomType = room.roomType || room.type;
+          const imageUrl = room.images?.[0]?.imageUrl || room.imageUrl || getRoomFallbackImage(roomType);
           const isAvailable = room.status?.toLowerCase() === 'available';
 
           return (
@@ -89,7 +89,10 @@ export default function AllRooms() {
                   </div>
                 </div>
 
-                <button className="w-full py-2.5 bg-[#006c4a] hover:bg-[#00855d] text-white text-xs font-bold rounded-lg transition-all shadow-sm">
+                <button 
+                  onClick={() => navigate(`/book?roomId=${roomId}`)}
+                  className="w-full py-2.5 bg-[#006c4a] hover:bg-[#00855d] text-white text-xs font-bold rounded-lg transition-all shadow-sm cursor-pointer"
+                >
                   Book Room
                 </button>
               </div>
