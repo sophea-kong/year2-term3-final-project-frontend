@@ -5,6 +5,7 @@ import AllRooms from './pages/AllRooms';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import MyRequest from './pages/MyRequest';
+import Schedule from './pages/Schedule';
 import Header from './component/header';
 import BookingForm from './pages/BookingForm';
 
@@ -22,7 +23,7 @@ function App() {
           <Route path="/rooms" element={<AllRooms />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/myrequests" element={<MyRequest />} />
-          <Route path="/booking" element={<BookingForm />} />
+          <Route path="/schedule" element={<Schedule />} />
           <Route path="*" element={<Navigate to="/myrequests" replace />} />
         </Route>
       </Routes>
