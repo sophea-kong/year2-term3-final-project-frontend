@@ -19,7 +19,7 @@ export default function AdminDashboard() {
   useEffect(()=>{
     const fetchBookings = async ()=>{
       try {
-        const res = await bookingApi.getAllBooking();
+        const res = await bookingApi.getAllPendingBookings();
         setPendingList(res);
       } catch (err){
         console.log(err);
