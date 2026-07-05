@@ -92,6 +92,9 @@ const bookingApi = {
   },
   verifyTicketCode: (ticketCode) => {
     return axiosClient.post('/tickets/verify', { ticketCode });
+  },
+  getAllBooking : ()=>{
+    return axiosClient.get('/booking');
   }
 };
 

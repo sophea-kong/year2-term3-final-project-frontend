@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './component/Layout';
+import AdminRoute from './component/AdminRoute';
 import AllRooms from './pages/AllRooms';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
@@ -8,6 +9,7 @@ import MyRequest from './pages/MyRequest';
 import Schedule from './pages/Schedule';
 import Header from './component/header';
 import BookingForm from './pages/BookingForm';
+import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
   return (
@@ -25,6 +27,12 @@ function App() {
           <Route path="/myrequests" element={<MyRequest />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/book" element={<BookingForm />} />
+          
+          {/* Admin Protected Routes */}
+          <Route element={<AdminRoute />}>
+            <Route path="/admin" element={<AdminDashboard />} />
+          </Route>
+          
           <Route path="*" element={<Navigate to="/myrequests" replace />} />
         </Route>
       </Routes>
