@@ -9,6 +9,8 @@ export default function Profile() {
     email: 'alex.rivera@university.edu',
     role: 'Student / Resource Coordinator',
   });
+  const [googleStatus, setGoogleStatus] = useState(null);
+
   useEffect(()=>{
     const fetchProfile = async ()=>{
         try{
@@ -19,13 +21,24 @@ export default function Profile() {
         }
     }
     fetchProfile();
+
+    // Check status parameters from redirect
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get('status');
+    if (status) {
+      setGoogleStatus(status);
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
   }, [])
-
-
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     window.location.href = '/login';
+  };
+
+  const handleLinkGoogleCalendar = () => {
+    const token = localStorage.getItem('token');
+    window.location.href = `http://localhost:3000/auth/google?token=${token}`;
   };
 
   return (
@@ -46,6 +59,17 @@ export default function Profile() {
 
         {/* Profile Info */}
         <div className="pt-16 pb-8 px-8">
+          {googleStatus === 'success' && (
+            <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-sm font-medium">
+              Google Calendar linked successfully! Your approved bookings will now sync.
+            </div>
+          )}
+          {googleStatus === 'error' && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-800 rounded-xl text-sm font-medium">
+              Failed to link Google Calendar. Please try again.
+            </div>
+          )}
+
           <div className="flex justify-between items-start">
             <div>
               <h2 className="text-2xl font-extrabold text-[#0b2240]">{user.fullName}</h2>
@@ -73,6 +97,31 @@ export default function Profile() {
               <div>
                 <span className="text-[10px] font-bold text-slate-400 block uppercase tracking-wider">Access Role</span>
                 <span className="text-sm font-medium">Standard User</span>
+              </div>
+            </div>
+
+            <div className="border-t border-slate-100 pt-6">
+              <span className="text-[10px] font-bold text-slate-400 block uppercase tracking-wider mb-3">Integrations</span>
+              <div className="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-white border border-slate-100 flex items-center justify-center shadow-sm shrink-0">
+                    <img 
+                      src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg" 
+                      alt="Google Calendar Logo" 
+                      className="w-6 h-6"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-[#0b2240]">Google Calendar</h4>
+                    <p className="text-xs text-slate-500">Sync approved bookings to your calendar</p>
+                  </div>
+                </div>
+                <button
+                  onClick={handleLinkGoogleCalendar}
+                  className="px-4 py-2 bg-[#006c4a] hover:bg-[#00855d] text-white text-xs font-semibold rounded-lg shadow-sm transition-all cursor-pointer shrink-0"
+                >
+                  Link Account
+                </button>
               </div>
             </div>
           </div>
