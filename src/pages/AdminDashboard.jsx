@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Shield, Users, DoorOpen, ClipboardList, CheckCircle, XCircle, Search, Filter } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import bookingApi from '../api/bookingApi';
 import axiosClient from '../api/axiosClient';
+import userApi from '../api/userApi';
+import roomApi from '../api/roomApi';
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -10,6 +13,8 @@ export default function AdminDashboard() {
     pendingRequests: 8,
     approvedRequests: 114
   });
+
+  const [totalUsers,setTotalUsers] = useState(0);
 
   const [pendingList, setPendingList] = useState([
     { id: 1, user: 'John Doe', room: 'Conference Room A', time: '10:00 AM - 12:00 PM', date: 'July 6, 2026' },
@@ -29,6 +34,19 @@ export default function AdminDashboard() {
         console.log(err);
       }
     }
+    const fetchData = async ()=>{
+      try{
+        const users = await userApi.getAllUsers();
+        const rooms = await roomApi.getAllRooms();
+        const pendingReq = await bookingApi.getPendingBookings();
+        const approveBooking = await bookingApi.getAllApprovedBooking();
+        console.log(pendingReq.length);
+        setStats({totalUsers : users.length, totalRooms : rooms.length, pendingRequests : pendingReq.length, approvedRequests : approveBooking.length})
+      } catch (err){
+        console.log(err);
+      }
+    }
+    fetchData();
     fetchBookings();
   },[]);
 
@@ -93,15 +111,15 @@ export default function AdminDashboard() {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <Link to="/admin/users" className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between hover:border-indigo-300 hover:shadow-md transition-all cursor-pointer group">
             <div>
-              <span className="text-xs font-bold text-slate-400 block uppercase tracking-wider">Total Users</span>
+              <span className="text-xs font-bold text-slate-400 block uppercase tracking-wider group-hover:text-indigo-500 transition-colors">Total Users</span>
               <span className="text-2xl font-extrabold text-[#0b2240] mt-1 block">{stats.totalUsers}</span>
             </div>
-            <div className="p-3 bg-blue-50 text-blue-600 rounded-xl">
+            <div className="p-3 bg-blue-50 text-blue-600 rounded-xl group-hover:bg-indigo-100 group-hover:text-indigo-700 transition-colors">
               <Users size={24} />
             </div>
-          </div>
+          </Link>
 
           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
             <div>

@@ -10,6 +10,7 @@ import Schedule from './pages/Schedule';
 import Header from './component/header';
 import BookingForm from './pages/BookingForm';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminManageUsers from './pages/AdminManageUsers';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           {/* Admin Protected Routes */}
           <Route element={<AdminRoute />}>
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/users" element={<AdminManageUsers />} />
           </Route>
           
           <Route path="*" element={<Navigate to="/myrequests" replace />} />

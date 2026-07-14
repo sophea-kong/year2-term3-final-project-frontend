@@ -104,6 +104,9 @@ const bookingApi = {
   },
   getAllPendingBookings : () => {
     return axiosClient.get('/booking/pendings');
+  },
+  getAllApprovedBooking : () => {
+    return axiosClient.get('/booking/approved')
   }
 };
 
