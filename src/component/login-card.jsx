@@ -12,6 +12,9 @@ const LoginCard = () => {
   const [isRegistering, setIsRegistering] = useState(false);
   const [authError, setAuthError] = useState('');
   const [authSuccess, setAuthSuccess] = useState('');
+  const [googleAccessToken, setGoogleAccessToken] = useState(null);
+  const [googleRefreshToken,setgoogleRefreshToken] = useState(null);
+  const [googleRefreshToken,setgoogleRefreshToken] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -38,7 +41,15 @@ const LoginCard = () => {
     setAuthError('');
     setAuthSuccess('');
     try {
-      await authApi.register({ fullName, email, password, department });
+      await authApi.register({ 
+        fullName, 
+        email, 
+        password, 
+        department,
+        googleAccessToken: null,
+        googleRefreshToken: null,
+        googleTokenExpiry: null
+      });
       setAuthSuccess('Registration successful! Please log in.');
       setIsRegistering(false);
       setPassword('');
