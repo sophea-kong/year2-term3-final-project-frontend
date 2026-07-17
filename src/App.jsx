@@ -42,7 +42,7 @@ function App() {
           </Route>
           
           <Route path="*" element={<Navigate to="/myrequests" replace />} />
-        </Route>
+        {/* </Route> */}
       </Routes>
     </>
   );
