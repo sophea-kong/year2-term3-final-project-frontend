@@ -1,6 +1,7 @@
 import LoginCard from '../component/login-card';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 function Login_navbar(){
     const [isOpen, setIsOpen] = useState(false);
@@ -47,8 +48,15 @@ function Login_navbar(){
 }
 
 function Login(){
+    const token = localStorage.getItem('token');
+    
+    if (token) {
+        return <Navigate to="/myrequests" replace />;
+    }
+
     return (
         <div className="min-h-screen flex flex-col bg-slate-50">
+            <Login_navbar />
             <div className="flex-1 flex items-center justify-center px-4">
                 <LoginCard />
             </div>
