@@ -7,6 +7,9 @@ const userApi = {
     },
     getAllUsers : () => {
         return axiosClient.get('/users/');
+    },
+    banUser : (id) => {
+        return axiosClient.patch(`/users/ban/${id}`);
     }
 }
 

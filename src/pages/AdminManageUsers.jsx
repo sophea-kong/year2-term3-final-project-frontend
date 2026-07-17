@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Users, Search, Edit2, Trash2, Mail, Shield, User, Coins, X } from 'lucide-react';
+import { Users, Search, Edit2, Trash2, Mail, Shield, User, Coins, X, Ban } from 'lucide-react';
 import userApi from '../api/userApi';
 import creditApi from '../api/creditApi';
 
@@ -29,6 +29,19 @@ export default function AdminManageUsers() {
       console.error("Failed to fetch users", err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleBanUser = async (userId, userName) => {
+    if (window.confirm(`Are you sure you want to ban ${userName}?`)) {
+      try {
+        await userApi.banUser(userId);
+        alert(`${userName} has been banned successfully.`);
+        fetchUsers();
+      } catch (error) {
+        console.error("Failed to ban user", error);
+        alert(`Failed to ban ${userName}. Please try again.`);
+      }
     }
   };
 
@@ -187,6 +200,13 @@ export default function AdminManageUsers() {
                             title="Manage Credits"
                           >
                             <Coins size={16} />
+                          </button>
+                          <button 
+                            onClick={() => handleBanUser(user.userId || user._id || user.id, user.fullName)}
+                            className="p-2 text-slate-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors" 
+                            title="Ban User"
+                          >
+                            <Ban size={16} />
                           </button>
                           <button className="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors" title="Edit User">
                             <Edit2 size={16} />

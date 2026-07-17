@@ -107,6 +107,9 @@ const bookingApi = {
   },
   getAllApprovedBooking : () => {
     return axiosClient.get('/booking/approved')
+  },
+  getBookingByid : (id) => {
+    return axiosClient.get(`/booking/${id}`)
   }
 };
 

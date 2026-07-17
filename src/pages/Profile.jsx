@@ -46,7 +46,8 @@ export default function Profile() {
 
   const handleLinkGoogleCalendar = () => {
     const token = localStorage.getItem('token');
-    window.location.href = `http://localhost:3000/auth/google?token=${token}`;
+    const baseUrl = import.meta.env.VITE_API_BASE_URL || 'https://year2-term3-final-project-backend.onrender.com';
+    window.location.href = `${baseUrl}/auth/google?token=${token}`;
   };
 
   return (
@@ -137,12 +138,19 @@ export default function Profile() {
                   <p className="text-xs text-slate-500">Sync approved bookings to your calendar</p>
                 </div>
               </div>
-              <button
-                onClick={handleLinkGoogleCalendar}
-                className="px-4 py-2 bg-[#006c4a] hover:bg-[#00855d] text-white text-xs font-semibold rounded-lg shadow-sm transition-all cursor-pointer shrink-0"
-              >
-                Link Account
-              </button>
+              {user.googleAccessToken ? (
+                <div className="flex items-center gap-1.5 px-3 py-2 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-lg shrink-0 border border-emerald-200">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  Connected
+                </div>
+              ) : (
+                <button
+                  onClick={handleLinkGoogleCalendar}
+                  className="px-4 py-2 bg-[#006c4a] hover:bg-[#00855d] text-white text-xs font-semibold rounded-lg shadow-sm transition-all cursor-pointer shrink-0"
+                >
+                  Link Account
+                </button>
+              )}
             </div>
           </div>
           

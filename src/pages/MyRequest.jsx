@@ -133,6 +133,7 @@ export default function DashBoard() {
                             return (
                                 <RequestCard
                                     key={booking.bookingId || booking.id}
+                                    bookingId={booking.bookingId || booking.id}
                                     room={roomName}
                                     building={buildingName}
                                     status={statusLabel}

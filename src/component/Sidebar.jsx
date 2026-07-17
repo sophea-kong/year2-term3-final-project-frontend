@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Home, Calendar, ClipboardList, Map, Settings, HelpCircle, LogOut, Shield } from 'lucide-react';
+import { Home, Calendar, ClipboardList, Map, Settings, HelpCircle, LogOut, Shield, Wrench } from 'lucide-react';
 import authApi from '../api/authApi';
 
 const Sidebar = ({ isOpen: controlledIsOpen, onClose: controlledOnClose }) => {
@@ -106,6 +106,10 @@ const Sidebar = ({ isOpen: controlledIsOpen, onClose: controlledOnClose }) => {
               <Calendar size={20} className="shrink-0" />
               <span>Find Room</span>
             </NavLink>
+            <NavLink to="/maintenance" onClick={handleLinkClick} className={getLinkClass}>
+              <Wrench size={20} className="shrink-0" />
+              <span>Maintenance</span>
+            </NavLink>
             
             {user && user.role === 'admin' && (
               <NavLink to="/admin" onClick={handleLinkClick} className={getLinkClass}>
@@ -114,10 +118,6 @@ const Sidebar = ({ isOpen: controlledIsOpen, onClose: controlledOnClose }) => {
               </NavLink>
             )}
 
-            <NavLink to="/map" onClick={handleLinkClick} className={getLinkClass}>
-              <Map size={20} className="shrink-0" />
-              <span>Campus Map</span>
-            </NavLink>
             <NavLink to="/settings" onClick={handleLinkClick} className={getLinkClass}>
               <Settings size={20} className="shrink-0" />
               <span>Settings</span>

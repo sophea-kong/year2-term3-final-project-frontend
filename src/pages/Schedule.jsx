@@ -18,7 +18,13 @@ export default function Schedule() {
     const [searchQuery, setSearchQuery] = useState("");
 
     function filterDays(data) {
-        const datestring = data.map((e) => e.startTime.split('T')[0]);
+        const datestring = data.map((e) => {
+            const date = new Date(e.startTime);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        });
         const uniquedates = [...new Set(datestring)];
         return uniquedates.sort();
     }
@@ -71,18 +77,37 @@ export default function Schedule() {
                 
                 setSchedules(fetchedSchedules);
                 setRooms(fetchedRooms);
+                console.log(schedules);
 
                 // Set up dates
                 const dates = filterDays(fetchedSchedules);
-                setAvailableDates(dates);
+                const today = new Date();
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, '0');
+                const day = String(today.getDate()).padStart(2, '0');
+                const todayStr = `${year}-${month}-${day}`;
 
-                if (dates.length > 0) {
-                    const todayStr = new Date().toISOString().split('T')[0];
-                    setSelectedDate(dates.includes(todayStr) ? todayStr : dates[0]);
+                // Set up dates
+                let available = [...dates];
+                
+                if (available.length > 0) {
+                    // If today has events, show today. Otherwise, show the first available date with events so the user isn't staring at a blank screen.
+                    if (available.includes(todayStr)) {
+                        setSelectedDate(todayStr);
+                    } else {
+                        setSelectedDate(available[0]);
+                    }
+                    // Still add today so we can navigate to it
+                    if (!available.includes(todayStr)) {
+                        available.push(todayStr);
+                        available.sort();
+                    }
                 } else {
-                    const todayStr = new Date().toISOString().split('T')[0];
+                    available = [todayStr];
                     setSelectedDate(todayStr);
                 }
+                
+                setAvailableDates(available);
             } catch (err) {
                 console.error("Failed to load timetable data:", err);
                 setError("Failed to load schedule planner. Please reload the page.");
@@ -96,14 +121,19 @@ export default function Schedule() {
     // Filter schedules for the selected date
     const daySchedules = schedules.filter(item => {
         const date = new Date(item.startTime);
-        return date.toISOString().split('T')[0] === selectedDate;
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const dateStr = `${year}-${month}-${day}`;
+        return dateStr === selectedDate;
     });
 
     // Filter rooms based on search query
-    const filteredRooms = rooms.filter(room => 
-        room.roomName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        room.building?.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredRooms = rooms.filter(room => {
+        const rName = room.roomName || room.name || "";
+        return rName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+               (room.building || "").toLowerCase().includes(searchQuery.toLowerCase());
+    });
 
     const hoursArray = Array.from({ length: totalHours + 1 }, (_, i) => startHour + i);
 
@@ -134,6 +164,14 @@ export default function Schedule() {
         }
     };
 
+    const handleToday = () => {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        setSelectedDate(`${year}-${month}-${day}`);
+    };
+
     return (
         <main className="flex-1 px-6 py-4 md:py-6 lg:py-8 bg-slate-50 overflow-y-auto">
             {/* Header */}
@@ -154,6 +192,14 @@ export default function Schedule() {
                             className="w-full sm:w-64 pl-4 pr-4 py-2 rounded-xl border border-slate-200 bg-white text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all shadow-sm"
                         />
                     </div>
+
+                    {/* Today Button */}
+                    <button 
+                        onClick={handleToday}
+                        className="px-4 py-2 text-sm font-bold text-[#0b2240] bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-all shadow-sm shrink-0"
+                    >
+                        Today
+                    </button>
 
                     {/* Date Controls */}
                     <div className="flex items-center justify-between gap-2 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm">
@@ -227,16 +273,19 @@ export default function Schedule() {
                         {/* Room Rows */}
                         <div className="divide-y divide-slate-100">
                             {filteredRooms.map(room => {
+                                const currentRoomId = String(room.roomId || room.id);
                                 const roomSchedules = daySchedules.filter(item => 
-                                    item.roomId === room.roomId || item.Room?.roomId === room.roomId
+                                    String(item.roomId) === currentRoomId || 
+                                    String(item.Room?.roomId) === currentRoomId || 
+                                    String(item.Room?.id) === currentRoomId
                                 );
 
                                 return (
-                                    <div key={room.roomId} className="flex min-h-[90px] group hover:bg-slate-50/30 transition-colors">
+                                    <div key={currentRoomId} className="flex min-h-[90px] group hover:bg-slate-50/30 transition-colors">
                                         
                                         {/* Room Label Card */}
                                         <div className="w-[220px] p-4 border-r border-slate-100 shrink-0 flex flex-col justify-center">
-                                            <h4 className="text-sm font-bold text-[#0b2240]">{room.roomName}</h4>
+                                            <h4 className="text-sm font-bold text-[#0b2240]">{room.roomName || room.name}</h4>
                                             <div className="flex items-center gap-1 text-[11px] text-slate-400 mt-1">
                                                 <MapPin size={11} />
                                                 <span>{room.building}</span>

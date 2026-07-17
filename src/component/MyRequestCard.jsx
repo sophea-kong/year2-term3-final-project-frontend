@@ -1,4 +1,7 @@
-function MyRequestCard({ room, building, status, date, time, eventTitle, onViewDetails, onCancel }) {
+import { useNavigate } from "react-router-dom";
+
+function MyRequestCard({ bookingId, room, building, status, date, time, eventTitle, onViewDetails, onCancel }) {
+    const navigate = useNavigate();
     return (
         <div className="w-full max-w-md rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
             {/* Header */}
@@ -40,12 +43,22 @@ function MyRequestCard({ room, building, status, date, time, eventTitle, onViewD
                 >
                     View Details
                 </button>
-                <button
-                    onClick={onCancel}
-                    className="flex-1 rounded-md bg-red-100 py-2 text-sm font-semibold text-red-600 transition-colors hover:bg-red-200"
-                >
-                    Cancel Request
-                </button>
+                
+                {(status?.toLowerCase() === 'approved' || status?.toLowerCase() === 'valid') ? (
+                    <button
+                        onClick={() => navigate(`/ticket/${bookingId}`)}
+                        className="flex-1 rounded-md bg-emerald-100 py-2 text-sm font-semibold text-emerald-700 transition-colors hover:bg-emerald-200"
+                    >
+                        View Ticket
+                    </button>
+                ) : (
+                    <button
+                        onClick={onCancel}
+                        className="flex-1 rounded-md bg-red-100 py-2 text-sm font-semibold text-red-600 transition-colors hover:bg-red-200"
+                    >
+                        Cancel Request
+                    </button>
+                )}
             </div>
         </div>
     );

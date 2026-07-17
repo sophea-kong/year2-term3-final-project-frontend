@@ -120,8 +120,7 @@ export default function AdminDashboard() {
               <Users size={24} />
             </div>
           </Link>
-
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <Link to='/rooms' className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between hover:border-indigo-300 hover:shadow-md transition-all cursor-pointer group">
             <div>
               <span className="text-xs font-bold text-slate-400 block uppercase tracking-wider">Active Rooms</span>
               <span className="text-2xl font-extrabold text-[#0b2240] mt-1 block">{stats.totalRooms}</span>
@@ -129,8 +128,7 @@ export default function AdminDashboard() {
             <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl">
               <DoorOpen size={24} />
             </div>
-          </div>
-
+          </Link>
           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
             <div>
               <span className="text-xs font-bold text-slate-400 block uppercase tracking-wider">Pending Approvals</span>

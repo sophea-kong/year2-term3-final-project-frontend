@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import bookingApi from "../api/bookingApi";
 import roomApi from "../api/roomApi";
+import userApi from "../api/userApi";
+import authApi from "../api/authApi";
 
 export default function BookingForm({ roomId: propRoomId, initialDate = "", initialTime = "", initialEndTime = "" } = {}) {
     const [searchParams] = useSearchParams();
@@ -44,6 +46,20 @@ export default function BookingForm({ roomId: propRoomId, initialDate = "", init
                 console.error("Error fetching room details:", err);
             }
         };
+        const fetchThisUser = async () =>{
+            try{
+                const result = await authApi.me();
+                if (result) {
+                    setFullName(result.fullName);
+                    setEmail(result.email);
+                    setStudentId(result.userId);
+                    setDepartment(result.department)
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+        fetchThisUser();
         fetchRoomDetails();
     }, [roomId]);
 
@@ -111,6 +127,7 @@ export default function BookingForm({ roomId: propRoomId, initialDate = "", init
                             value={fullName}
                             onChange={(e) => setFullName(e.target.value)}
                             className="w-full border border-gray-300 bg-gray-100 rounded-md p-2 mt-1" 
+                            value = {fullName}
                         />
                     </div>
                     <div>
@@ -121,6 +138,7 @@ export default function BookingForm({ roomId: propRoomId, initialDate = "", init
                             value={studentId}
                             onChange={(e) => setStudentId(e.target.value)}
                             className="w-full border border-gray-300 bg-gray-100 rounded-md p-2 mt-1" 
+                            value = {studentId}
                         />
                     </div>
                     <div>
@@ -131,6 +149,7 @@ export default function BookingForm({ roomId: propRoomId, initialDate = "", init
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full border border-gray-300 bg-gray-100 rounded-md p-2 mt-1" 
+                            value = {email}
                         />
                     </div>
                     <div>
@@ -141,6 +160,7 @@ export default function BookingForm({ roomId: propRoomId, initialDate = "", init
                             value={department}
                             onChange={(e) => setDepartment(e.target.value)}
                             className="w-full border border-gray-300 bg-gray-100 rounded-md p-2 mt-1" 
+                            value = {department}
                         />
                     </div>
                 </div>

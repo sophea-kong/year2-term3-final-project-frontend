@@ -6,6 +6,7 @@ export default function Header() {
         { name: "My Requests", href: "/myrequests" },
         { name: "Find Rooms", href: "/rooms" },
         { name: "Schedule", href: "/schedule" },
+        { name: "AI Assistant", href: "/chat" },
     ];
 
     const [ openDropdown, setOpenDropdown ] = useState(false);
