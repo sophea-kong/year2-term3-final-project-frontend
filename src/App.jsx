@@ -23,8 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         
         {/* Protected Routes */}
-        {/* <Route element={<Layout />}> */}
-          {/* <Route path="/login" element={<Login />} /> */}
+        <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/rooms" element={<AllRooms />} />
           <Route path="/profile" element={<Profile />} />
@@ -42,7 +41,7 @@ function App() {
           </Route>
           
           <Route path="*" element={<Navigate to="/myrequests" replace />} />
-        {/* </Route> */}
+        </Route>
       </Routes>
     </>
   );
