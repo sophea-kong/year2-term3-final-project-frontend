@@ -14,7 +14,7 @@ const LoginCard = () => {
   const [authSuccess, setAuthSuccess] = useState('');
   const [googleAccessToken, setGoogleAccessToken] = useState(null);
   const [googleRefreshToken,setgoogleRefreshToken] = useState(null);
-  const [googleRefreshToken,setgoogleRefreshToken] = useState(null);
+  const [googleTokenExpiry,setgoogleTokenExpiry] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
