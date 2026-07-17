@@ -24,6 +24,7 @@ function App() {
         
         {/* Protected Routes */}
         <Route element={<Layout />}>
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/rooms" element={<AllRooms />} />
           <Route path="/profile" element={<Profile />} />
